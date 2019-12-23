@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gráficos teste basic</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="vue">
+	<div class="container" style="width:100%; max-width: 800px">
+		<canvas id="myChart"></canvas>	
+	</div>
+</div>
+
+
+<!-- A line chart is a way of plotting data points on a line. Often, it is used to show trend data, or the comparison of two data sets. -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script type="text/javascript">
+	const vue = new Vue({
+		el: "#vue",
+		data: {
+			// minha data
+		},
+		mounted() {
+			var ctx = document.getElementById('myChart');
+			Chart.defaults.global.animation.duration = 2000;
+			var myChart = new Chart(ctx, {
+			    type: 'line',
+			    data: {
+			        labels: ['Alisson', 'Letícia', 'Maycão', 'Raphinha', 'Brazão'],
+			        datasets: [{
+			        	label: 'Idade',
+			            data: [19, 18, 18, 18, 18, 18],
+			            backgroundColor: 'rgba(162, 155, 254, 0.5)',
+			            borderWidth: 1,
+			            borderColor: 'rgba(108, 92, 231, 1.0)',
+			            pointBackgroundColor: 'rgba(108, 92, 231, 1.0)',
+			            pointBorderColor: 'rgba(108, 92, 231, 1.0)',
+			            pointBorderWidth: 3,
+			            lineTension: 0.4,
+			        }]
+			    },
+			    options: {
+			    	title: {
+			    		display: true,
+			    		text: "Line chart - ages",
+			    		position: "top",
+			    		fontSize: 20
+			    	},
+			    	scales: {
+				        yAxes: [{
+				            stacked: true
+				        }]
+				    }
+				}
+			});
+		}
+	});
+</script>
+
+</body>
+</html>

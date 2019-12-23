@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gráficos teste basic</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="vue">
+	<div class="container">
+		<canvas id="myChart"></canvas>	
+	</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script type="text/javascript">
+	const vue = new Vue({
+		el: "#vue",
+		data: {
+			title: "# of Votes",
+			label: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+			data: [12, 19, 3, 5, 2, 3]
+		},
+		mounted() {
+			var ctx = document.getElementById('myChart');
+			var myChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: this.label,
+			        datasets: [{
+			            label: this.title,
+			            data: this.data,
+			            backgroundColor: function(context) {
+						    var index = context.dataIndex;
+						    var value = context.dataset.data[index];
+						    return value < 10 ? 'red' : 'green'
+						},
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero: true
+			                }
+			            }]
+			        },
+			        animation: {
+			            duration: 0 // general animation time
+			        },
+			        hover: {
+			            animationDuration: 0 // duration of animations when hovering an item
+			        },
+			        responsiveAnimationDuration: 0
+			    }
+			});
+		}
+	});
+</script>
+
+</body>
+</html>
